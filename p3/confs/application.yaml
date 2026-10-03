@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jesstava-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/IoT-42/jesstava.git
+    path: p3/confs/app
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
